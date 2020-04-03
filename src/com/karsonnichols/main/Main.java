@@ -1,18 +1,12 @@
 package com.karsonnichols.main;
 
 import com.karsonnichols.model.replace.GetFilePath;
-import com.karsonnichols.model.replace.LookForChanges;
-import com.karsonnichols.model.replace.replaceline.ReplaceLine;
-import com.karsonnichols.model.replace.WriteToSource;
-
-import java.io.*;
-import java.util.ArrayList;
-import java.util.Scanner;
+import com.karsonnichols.model.replace.MakeChanges;
 
 public class Main {
 
     public static void main(String[] args) {
-        LookForChanges changes;
+        MakeChanges changes;
         // Users path to files need to be changed
         // this is recurise function that will reed all the sub files in directory
         // writes back to the file reads from
@@ -21,12 +15,12 @@ public class Main {
         // input directory it will loop over all sub directories and find the files within them
         GetFilePath filePath = new GetFilePath("/home/karson.nichols/Desktop/share/WebStorm/KHDEV-ACTIVE/_site/views/services/zzznewcards.php");
 
-        if(filePath.getPath().size() == 0){
+        if(filePath.getPaths().size() == 0){
             // searches a specific file
-            new LookForChanges(filePath.getStartPath());
+            new MakeChanges(filePath.getStartPath());
         }else {
             // searches array of paths
-            new LookForChanges(filePath.getPath());
+            new MakeChanges(filePath.getPaths());
         }
 
 

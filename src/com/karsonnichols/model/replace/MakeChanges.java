@@ -8,33 +8,38 @@ import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class LookForChanges {
+/**
+ * Place where the actual changes happen
+ */
+
+public class MakeChanges {
     // copy file ***Check if String is better for temp storage***
     private File copyFile = new File("copy.php");
+    private WriteToSource writeToSource;
 
-    public LookForChanges(String path){
-        search(path);
+    public MakeChanges(String path){
+        makeChangesToFile(path);
         // must be in the loop to keep the right copy for writing
-        WriteToSource writeToSource = new WriteToSource(copyFile, new File(path));
-        writeToSource.writeFiles();
+        this.writeToSource= new WriteToSource(this.copyFile, new File(path));
+        this.writeToSource.writeFiles();
     }
 
-    public LookForChanges(ArrayList<String> paths){
+    public MakeChanges(ArrayList<String> paths){
         // loop over files in a path
         for(String file : paths){
-            search(file);
+            makeChangesToFile(file);
             // must be in the loop to keep the right copy for writing
-            WriteToSource writeToSource = new WriteToSource(copyFile, new File(file));
-            writeToSource.writeFiles();
+            this.writeToSource = new WriteToSource(this.copyFile, new File(file));
+            this.writeToSource.writeFiles();
         }
     }
 
     // magic
-    public void search(String file){
+    public void makeChangesToFile(String file){
 
         try{
             // create a writer obj
-            FileWriter fileWriter = new FileWriter(copyFile);
+            FileWriter fileWriter = new FileWriter(this.copyFile);
             // scan current file
             Scanner scanner = new Scanner(new FileReader(file));
 

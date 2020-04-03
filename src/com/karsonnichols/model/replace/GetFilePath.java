@@ -16,30 +16,27 @@ public class GetFilePath {
     private String fileFolder;
     private ArrayList<String> paths;
 
+    private File file;
+
     public GetFilePath(String startPath){
         this.startPath = startPath;
         this.fileFolder = "";
         this.paths = new ArrayList<>();
+        this.file = new File(this.startPath);
     }
 
     public String getStartPath () {
         return this.startPath;
     }
 
-    public ArrayList<String> getPath(){
-        File file = new File(this.startPath);
-        if(file.isFile()){
-            // no need to add to array
-            return this.paths;
-        }
-        // check to see if path is already a file
-
-
+    public void setPaths() {
         // list all the files in start path
         File[] files = file.listFiles();
         // this method adds file paths to array list
         findPath(files);
+    }
 
+    public ArrayList<String> getPaths(){
         // return new paths
         return this.paths;
     }
