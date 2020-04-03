@@ -17,9 +17,8 @@ public class Main {
         // writes back to the file reads from
         /****SUB DIRECTORIES CANNOT BE TO DEEP AND WILL READ ALL THE FILES*****/
 
-        String userInputPath = "/home/karson.nichols/Desktop/share/WebStorm/KHDEV-ACTIVE/_site/views/services/";
-        // needs testing
-//        String userInputFile = Paths.get(input).toAbsolutePath();
+        String userInputPath = "/home/karson.nichols/Desktop/share/WebStorm/KHDEV-ACTIVE/_site/views/services/zzznewcards.php";
+
         FilePath filePath = new FilePath(userInputPath);
 
         ArrayList<String> paths = filePath.getPaths();
