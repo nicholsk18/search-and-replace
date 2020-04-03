@@ -1,23 +1,23 @@
-package com.karsonnichols.model;
+package com.karsonnichols.model.replace.replaceitem;
 
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.Scanner;
 
-public class ReplaceLine {
+public class ReplaceItem {
     private String line;
 
-    public ReplaceLine(String line){
+    public ReplaceItem(String line){
         this.line = line;
     }
 
     public String getLine () {
-        try (Scanner scanner = new Scanner(Paths.get("replace.csv").toAbsolutePath())){
+        try (Scanner scanner = new Scanner(Paths.get("replace-item.csv").toAbsolutePath())){
 
             while (scanner.hasNextLine()){
-                // scann line
+                // scan line
                 String line = scanner.nextLine();
-                if(line.startsWith("//")){
+                if(line.startsWith("//") || line.isEmpty()){
                     continue;
                 }
 
@@ -44,5 +44,4 @@ public class ReplaceLine {
         }
         return this.line + "\n";
     }
-
 }

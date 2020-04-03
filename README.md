@@ -1,5 +1,4 @@
-# Usage 
-======================================================================================================
+# Usage
 
  - Start by changing the userInputPath to the location where you want to make changes
 
