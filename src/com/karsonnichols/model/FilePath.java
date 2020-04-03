@@ -1,4 +1,4 @@
-/**
+package com.karsonnichols.model; /**
  * This class takes a path in
  * recursively checks for sub directories
  * puts all the files in to ArrayList

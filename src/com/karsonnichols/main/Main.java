@@ -1,4 +1,11 @@
+package com.karsonnichols.main;
+
+import com.karsonnichols.model.FilePath;
+import com.karsonnichols.model.ReplaceLine;
+import com.karsonnichols.model.WriteToSource;
+
 import java.io.*;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -11,6 +18,8 @@ public class Main {
         /****SUB DIRECTORIES CANNOT BE TO DEEP AND WILL READ ALL THE FILES*****/
 
         String userInputPath = "/home/karson.nichols/Desktop/share/WebStorm/KHDEV-ACTIVE/_site/views/services/";
+        // needs testing
+//        String userInputFile = Paths.get(input).toAbsolutePath();
         FilePath filePath = new FilePath(userInputPath);
 
         ArrayList<String> paths = filePath.getPaths();
