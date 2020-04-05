@@ -1,14 +1,19 @@
 package com.karsonnichols.view;
 
+import com.karsonnichols.model.replace.GetFilePath;
+
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 public class GUI {
     JFrame mainFrame;
     JPanel mainPanel;
+
+    private String filePath;
 
     public GUI (String name){
         this.mainFrame = new JFrame(name);
@@ -48,9 +53,20 @@ public class GUI {
     }
 
     class FindProjectPath implements ActionListener {
+        private String filePath;
         public void actionPerformed(ActionEvent event){
             JFileChooser fileOpen = new JFileChooser();
             fileOpen.showOpenDialog(mainFrame);
+            File myFile = fileOpen.getSelectedFile();
+            this.filePath = myFile.getAbsolutePath();
         }
+        public String getFilePath (){
+            return this.filePath;
+        }
+    }
+
+    public String getFile(){
+        FindProjectPath path = new FindProjectPath();
+        return path.getFilePath();
     }
 }

@@ -4,9 +4,20 @@ import com.karsonnichols.model.replace.GetFilePath;
 import com.karsonnichols.model.replace.MakeChanges;
 import com.karsonnichols.view.GUI;
 
+import java.io.File;
+import java.nio.file.Paths;
+
 public class Main {
 
     public static void main(String[] args) {
+        GUI gui = new GUI("Simple file copy");
+        gui.build();
+
+        String file = gui.getFile();
+
+//        GetFilePath myTestFilePath = new GetFilePath();
+        System.out.println(file);
+
         MakeChanges changes;
         // Users path to files need to be changed
         // this is recurise function that will reed all the sub files in directory
@@ -26,10 +37,6 @@ public class Main {
                 new MakeChanges(filePath.getPaths());
             }
         }
-
-        GUI gui = new GUI("Simple file copy");
-        gui.build();
-
 
     }
 
