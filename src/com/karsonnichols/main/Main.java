@@ -12,11 +12,10 @@ public class Main {
     public static void main(String[] args) {
         GUI gui = new GUI("Simple file copy");
         gui.build();
+        System.out.println(gui.getFilePath());;
 
-        String file = gui.getFile();
 
 //        GetFilePath myTestFilePath = new GetFilePath();
-        System.out.println(file);
 
         MakeChanges changes;
         // Users path to files need to be changed
