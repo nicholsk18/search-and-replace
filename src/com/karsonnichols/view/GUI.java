@@ -1,6 +1,7 @@
 package com.karsonnichols.view;
 
 import com.karsonnichols.model.replace.GetFilePath;
+import com.karsonnichols.model.replace.MakeChanges;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -19,10 +20,6 @@ public class GUI {
     public GUI (String name){
         this.mainFrame = new JFrame(name);
         this.mainPanel  = new JPanel(new BorderLayout());
-    }
-
-    public String getFilePath () {
-        return this.filePath;
     }
 
     public void build() {
@@ -44,7 +41,6 @@ public class GUI {
         Button findFile = new Button("Find File");
 
         FindProjectPath findProjectPath = new FindProjectPath();
-        System.out.println(findProjectPath.getPath());
         findFile.addActionListener(findProjectPath);
 
         gridBagConstraints.gridx = 1;
@@ -69,14 +65,23 @@ public class GUI {
             if(option == JFileChooser.APPROVE_OPTION){
                 File file = fileChooser.getSelectedFile();
                 String path = file.getAbsolutePath();
-                this.path = path;
+
+                GetFilePath filePath = new GetFilePath(path + "/");
+                System.out.println(filePath.getStartPath());
+                filePath.setPaths();
+
+                if(filePath.getPaths().size() == 0){
+                    // searches a specific file
+                    new MakeChanges(filePath.getStartPath());
+                }else {
+                    // searches array of paths
+                    new MakeChanges(filePath.getPaths());
+                }
+
+
             }else{
                 System.out.println("Could not open file");
             }
-        }
-
-        public String getPath () {
-            return this.path;
         }
 
     }

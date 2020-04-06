@@ -31,7 +31,7 @@ public class GetFilePath {
 
     public void setPaths() {
         // list all the files in start path
-        File[] files = file.listFiles();
+        File[] files = this.file.listFiles();
         // this method adds file paths to array list
         findPath(files);
     }

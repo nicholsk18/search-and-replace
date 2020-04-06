@@ -41,6 +41,7 @@ public class MakeChanges {
             // create a writer obj
             FileWriter fileWriter = new FileWriter(this.copyFile);
             // scan current file
+            System.out.println(file);
             Scanner scanner = new Scanner(new FileReader(file));
 
             // loop over each line in file

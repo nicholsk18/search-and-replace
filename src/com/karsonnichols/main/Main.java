@@ -12,10 +12,10 @@ public class Main {
     public static void main(String[] args) {
         GUI gui = new GUI("Simple file copy");
         gui.build();
-        System.out.println(gui.getFilePath());;
 
 
 //        GetFilePath myTestFilePath = new GetFilePath();
+//        System.out.println(myTestFilePath.getStartPath());
 
         MakeChanges changes;
         // Users path to files need to be changed
@@ -26,7 +26,10 @@ public class Main {
         // set false for testing gui
         if(false){
             // input directory it will loop over all sub directories and find the files within them
-            GetFilePath filePath = new GetFilePath("/home/karson.nichols/Desktop/share/WebStorm/KHDEV-ACTIVE/_site/views/services/zzznewcards.php");
+            GetFilePath filePath = new GetFilePath("/home/karson/Desktop/repo/NodeJS/playground");
+            System.out.println(filePath);
+            filePath.setPaths();
+//            GetFilePath filePath = new GetFilePath();
 
             if(filePath.getPaths().size() == 0){
                 // searches a specific file
