@@ -22,23 +22,23 @@ public class ReplaceLine {
 
     public String getLine () {
         // once get input from gui remove this
-        try (Scanner scanner = new Scanner(Paths.get("replace-line.csv").toAbsolutePath())){
-
-            // once get input from gui remove this
-            while (scanner.hasNextLine()){
-                // scan line
-                String line = scanner.nextLine();
-                if(line.startsWith("//") || line.isEmpty()){
-                    continue;
-                }
-
-                // once get input from gui remove this
-                this.splitLine(line);
-
-            }
-        } catch (IOException ex){
-            ex.printStackTrace();
-        }
+//        try (Scanner scanner = new Scanner(Paths.get("replace-line.csv").toAbsolutePath())){
+//
+//            // once get input from gui remove this
+//            while (scanner.hasNextLine()){
+//                // scan line
+//                String line = scanner.nextLine();
+//                if(line.startsWith("//") || line.isEmpty()){
+//                    continue;
+//                }
+//
+//                // once get input from gui remove this
+//                this.splitLine(line);
+//
+//            }
+//        } catch (IOException ex){
+//            ex.printStackTrace();
+//        }
 
         // set from gui to check if changing only line or item
         boolean isLine = false;
@@ -46,11 +46,11 @@ public class ReplaceLine {
     }
 
     // once get input from gui remove this
-    public void splitLine(String replaceLine){
-        String[] parts = replaceLine.split(":");
-        this.searchFor = parts[0];
-        this.changeTo = parts[1];
-    }
+//    public void splitLine(String replaceLine){
+//        String[] parts = replaceLine.split(":");
+//        this.searchFor = parts[0];
+//        this.changeTo = parts[1];
+//    }
 
     public String lineChange (String line, String searchFor, String changeTo, boolean isLine) {
         if(line.contains(searchFor)){
