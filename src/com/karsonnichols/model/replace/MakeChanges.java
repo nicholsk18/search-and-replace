@@ -21,7 +21,7 @@ public class MakeChanges {
         searchForChange(path);
         // must be in the loop to keep the right copy for writing
         this.writeToSource= new WriteToSource(this.copyFile, new File(path));
-        this.writeToSource.writeFiles();
+        this.writeToSource.writeFiles(); // need to check if can be removed
     }
 
     public MakeChanges(ArrayList<String> paths){

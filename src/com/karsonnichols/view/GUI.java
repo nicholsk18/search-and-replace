@@ -80,14 +80,12 @@ public class GUI {
                 File file = fileChooser.getSelectedFile();
                 String path = file.getAbsolutePath();
 
-                GetFilePath filePath = new GetFilePath(path + "/");
-                System.out.println(filePath.getStartPath());
-                filePath.setPaths();
-
-                if(filePath.getPaths().size() == 0){
+                GetFilePath filePath = new GetFilePath(path);
+                if(!file.isDirectory()){
                     // searches a specific file
                     new MakeChanges(filePath.getStartPath());
                 }else {
+                    filePath.setPaths();
                     // searches array of paths
                     new MakeChanges(filePath.getPaths());
                 }

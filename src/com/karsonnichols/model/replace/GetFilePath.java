@@ -16,6 +16,8 @@ public class GetFilePath {
     private String fileFolder;
     private ArrayList<String> paths;
 
+    // need to be File to search dir
+    // other one sets path as a String
     private File file;
 
     public GetFilePath(String startPath){
@@ -38,6 +40,9 @@ public class GetFilePath {
 
     public ArrayList<String> getPaths(){
         // return new paths
+        for(String path : paths){
+            System.out.println(path);
+        }
         return this.paths;
     }
 
@@ -65,9 +70,9 @@ public class GetFilePath {
                     // other wise exclude the folder
                     if (!this.fileFolder.isEmpty()){
                         // is already has a folder go back inside
-                        paths.add(this.startPath  + this.fileFolder + "/" + file.getName());
+                        paths.add(this.startPath + "/" + this.fileFolder + "/" + file.getName());
                     } else {
-                        paths.add(this.startPath + file.getName());
+                        paths.add(this.startPath + "/" + file.getName());
                     }
                 }
             }
