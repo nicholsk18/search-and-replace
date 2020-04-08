@@ -18,7 +18,7 @@ public class MakeChanges {
     private WriteToSource writeToSource;
 
     public MakeChanges(String path){
-        makeChangesToFile(path);
+        searchForChange(path);
         // must be in the loop to keep the right copy for writing
         this.writeToSource= new WriteToSource(this.copyFile, new File(path));
         this.writeToSource.writeFiles();
@@ -27,7 +27,7 @@ public class MakeChanges {
     public MakeChanges(ArrayList<String> paths){
         // loop over files in a path
         for(String file : paths){
-            makeChangesToFile(file);
+            searchForChange(file);
             // must be in the loop to keep the right copy for writing
             this.writeToSource = new WriteToSource(this.copyFile, new File(file));
             this.writeToSource.writeFiles();
@@ -35,7 +35,7 @@ public class MakeChanges {
     }
 
     // magic
-    public void makeChangesToFile(String file){
+    public void searchForChange(String file){
 
         try{
             // create a writer obj

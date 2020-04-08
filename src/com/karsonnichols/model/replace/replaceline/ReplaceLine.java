@@ -21,8 +21,10 @@ public class ReplaceLine {
     }
 
     public String getLine () {
+        // once get input from gui remove this
         try (Scanner scanner = new Scanner(Paths.get("replace-line.csv").toAbsolutePath())){
 
+            // once get input from gui remove this
             while (scanner.hasNextLine()){
                 // scan line
                 String line = scanner.nextLine();
@@ -30,33 +32,51 @@ public class ReplaceLine {
                     continue;
                 }
 
-                // splits line in to two string one for what you searching for and what to replace the line with
-                splitLine(line);
-
-                if(this.line.contains(this.searchFor)){
-                    // trims string to match actual string and preserve white space
-                    String trimmed = this.line.trim();
-                    // replace the whole matched line
-                    String changed = this.line.replace(trimmed,this.changeTo + "\n");
-
-                    // log change
-                    System.out.println("line changed from: " + trimmed + "\n to: " + changed.trim());
-
-                    return changed;
-                }
+                // once get input from gui remove this
+                this.splitLine(line);
 
             }
         } catch (IOException ex){
             ex.printStackTrace();
         }
-        return this.line + "\n";
+
+        // set from gui to check if changing only line or item
+        boolean isLine = false;
+        return this.lineChange(this.line, this.searchFor, this.changeTo, isLine);
     }
 
-    // splits line in two parts
+    // once get input from gui remove this
     public void splitLine(String replaceLine){
         String[] parts = replaceLine.split(":");
         this.searchFor = parts[0];
         this.changeTo = parts[1];
+    }
+
+    public String lineChange (String line, String searchFor, String changeTo, boolean isLine) {
+        if(line.contains(searchFor)){
+            // trims string to match actual string and preserve white space
+            String trimmed = this.trim(line);
+            if(isLine){
+                // replace the whole matched line
+                String changed = line.replace(trimmed,changeTo + "\n");
+
+                // log change
+                System.out.println("line changed from: " + trimmed + "\n to: " + changed.trim());
+
+                return changed;
+            }
+
+            // replace only the search term
+            return line.replace(searchFor,changeTo + "\n");
+
+        }
+
+        return line + "\n";
+    }
+
+    public String trim(String untrimmed) {
+        // just for debug output
+        return untrimmed.trim();
     }
 
 }

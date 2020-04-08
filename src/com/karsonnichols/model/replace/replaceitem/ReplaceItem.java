@@ -26,22 +26,28 @@ public class ReplaceItem {
                 String searchFor = parts[0];
                 String changeTo = parts[1];
 
-                if(this.line.contains(searchFor)){
-                    // trims string to match actual string and preserve white space
-                    String trimmed = this.line.trim();
-                    // replace the whole matched line
-                    String changed = this.line.replace(trimmed,changeTo + "\n");
-
-                    // log change
-                    System.out.println("line changed from: " + trimmed + "\n to: " + changed.trim());
-
-                    return changed;
-                }
+                System.out.println(this.change(line, searchFor, changeTo));
+                return this.change(line, searchFor, changeTo);
 
             }
         } catch (IOException ex){
             ex.printStackTrace();
         }
         return this.line + "\n";
+    }
+
+    public String change (String line, String searchFor, String changeTo) {
+        if(line.contains(searchFor)){
+            // trims string to match actual string and preserve white space
+            String trimmed = line.trim();
+            // replace the whole matched line
+            String changed = line.replace(trimmed,changeTo + "\n");
+
+            // log change
+            System.out.println("line changed from: " + trimmed + "\n to: " + changed.trim());
+
+            return changed;
+        }
+        return "";
     }
 }
