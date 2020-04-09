@@ -11,7 +11,7 @@ package com.karsonnichols.model.replace;
 import java.io.File;
 import java.util.ArrayList;
 
-public class GetFilePath {
+public class CreateFilePath {
     private String startPath;
     private String fileFolder;
     private ArrayList<String> paths;
@@ -20,7 +20,7 @@ public class GetFilePath {
     // other one sets path as a String
     private File file;
 
-    public GetFilePath(String startPath){
+    public CreateFilePath(String startPath){
         this.startPath = startPath;
         this.fileFolder = "";
         this.paths = new ArrayList<>();

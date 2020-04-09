@@ -1,11 +1,8 @@
 package com.karsonnichols.main;
 
-import com.karsonnichols.model.replace.GetFilePath;
+import com.karsonnichols.model.replace.CreateFilePath;
 import com.karsonnichols.model.replace.MakeChanges;
 import com.karsonnichols.view.GUI;
-
-import java.io.File;
-import java.nio.file.Paths;
 
 public class Main {
 
@@ -21,7 +18,7 @@ public class Main {
         // set false for testing gui
         if(false){
             // input directory it will loop over all sub directories and find the files within them
-            GetFilePath filePath = new GetFilePath("/home/karson.nichols/Desktop/share/WebStorm/KHDEV-ACTIVE/_site/views/services/zzznewcards.php");
+            CreateFilePath filePath = new CreateFilePath("/home/karson.nichols/Desktop/share/WebStorm/KHDEV-ACTIVE/_site/views/services/zzznewcards.php");
 //            GetFilePath filePath = new GetFilePath("put path");
 
             if(filePath.getPaths().size() == 0){

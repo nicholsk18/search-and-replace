@@ -1,14 +1,13 @@
 package com.karsonnichols.view;
 
-import com.karsonnichols.model.replace.GetFilePath;
+import com.karsonnichols.model.replace.CreateFilePath;
 import com.karsonnichols.model.replace.MakeChanges;
+import com.karsonnichols.model.searchForChange.SearchForChange;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
-import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,9 +19,6 @@ public class GUI {
 
     JTextArea inputSearchFor;
     JTextArea inputStringReplaceTo;
-
-    String test1;
-    String test2;
 
     
     public GUI (String name){
@@ -113,16 +109,15 @@ public class GUI {
         this.mainFrame.setSize(1280, 780);
         this.mainFrame.setVisible(true);
 
-        System.out.println(this.test1 = test1);
-        System.out.println(test2);
     }
 
     // look in to implementing outside instead of inner class
     public class FindProjectPath implements ActionListener {
 
         public void actionPerformed(ActionEvent event){
-            test1 = inputSearchFor.getText();
-            test2 = inputStringReplaceTo.getText();
+            // need to figure out how to pass this data
+//            test1 = inputSearchFor.getText();
+//            test2 = inputStringReplaceTo.getText();
 
             // opens file window
             JFileChooser fileChooser = new JFileChooser();
@@ -135,20 +130,36 @@ public class GUI {
 
                 // gets file and turns it to string path
                 File file = fileChooser.getSelectedFile();
-                String path = file.getAbsolutePath();
+                String userPathToFile = file.getAbsolutePath();
 
                 // set the path
-                GetFilePath filePath = new GetFilePath(path);
+                CreateFilePath filePath = new CreateFilePath(userPathToFile);
 
                 // if its file run as file
                 // otherwise run though files in directory
                 if(!file.isDirectory()){
                     // searches a specific file
-                    new MakeChanges(filePath.getStartPath());
+//                    new MakeChanges(filePath.getStartPath());
+
+                    // place to check if change happend
+                    SearchForChange searchForChange = new SearchForChange("line", inputSearchFor.getText(), inputStringReplaceTo.getText());
+                    if(searchForChange.changeHappened()){
+                        // if changed happened
+                        // write chagnes to file here
+                        String newLine = searchForChange.getChange();
+                    }
+
+                    // if didnt happen write same line "line + "\n""
+
                 }else {
                     filePath.setPaths();
+
+                    for (String path : filePath.getPaths()){
+                        // call something that makes changes to file
+                    }
+
                     // searches array of paths
-                    new MakeChanges(filePath.getPaths());
+//                    new MakeChanges(filePath.getPaths());
                 }
 
             }else{
