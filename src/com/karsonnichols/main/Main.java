@@ -2,13 +2,13 @@ package com.karsonnichols.main;
 
 import com.karsonnichols.model.replace.CreateFilePath;
 import com.karsonnichols.model.replace.MakeChanges;
-import com.karsonnichols.view.GUI;
+import com.karsonnichols.view.UserInterface;
 
 public class Main {
 
     public static void main(String[] args) {
-        GUI gui = new GUI("Simple file copy");
-        gui.build();
+        UserInterface userInterface = new UserInterface("Simple file copy");
+        userInterface.build();
 
         // Users path to files need to be changed
         // this is recurise function that will reed all the sub files in directory

@@ -13,7 +13,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 
-public class GUI {
+public class UserInterface {
     JFrame mainFrame;
     JPanel mainPanel;
 
@@ -21,7 +21,7 @@ public class GUI {
     JTextArea inputStringReplaceTo;
 
     
-    public GUI (String name){
+    public UserInterface(String name){
         this.mainFrame = new JFrame(name);
         this.mainPanel  = new JPanel(new BorderLayout());
     }
