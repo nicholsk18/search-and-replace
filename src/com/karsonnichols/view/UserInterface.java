@@ -1,7 +1,15 @@
 package com.karsonnichols.view;
 
-import com.karsonnichols.model.replace.CreateFilePath;
-import com.karsonnichols.model.replace.WriteToSource;
+/**
+ * This is the GUI
+ * on actionListener it will run all the code to make changes
+ *
+ * want to change to only run when user is ready
+ * not when they select path
+ */
+
+import com.karsonnichols.model.createPath.CreateFilePath;
+import com.karsonnichols.model.writeFile.WriteToSource;
 import com.karsonnichols.model.searchForChange.SearchForChange;
 
 import javax.swing.*;

@@ -1,4 +1,4 @@
-package com.karsonnichols.model.replace;
+package com.karsonnichols.model.writeFile;
 
 import java.io.File;
 import java.io.FileReader;

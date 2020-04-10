@@ -1,5 +1,11 @@
 package com.karsonnichols.model.searchForChange;
 
+/**
+ * This file searches a line for change
+ * other two methods will also return the change in a new line
+ * needs to be abstracted out?
+ */
+
 public class SearchForChange {
     private String line;
     private String searchFor;
