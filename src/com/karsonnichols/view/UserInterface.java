@@ -9,6 +9,7 @@ package com.karsonnichols.view;
  */
 
 import com.karsonnichols.model.createPath.CreateFilePath;
+import com.karsonnichols.model.readFile.ReadFile;
 import com.karsonnichols.model.writeFile.WriteToSource;
 import com.karsonnichols.model.searchForChange.SearchForChange;
 
@@ -70,8 +71,8 @@ public class UserInterface {
         nested.add(inputSearchForText, gridBagConstraints);
 
         this.inputSearchFor = new JTextArea("", 1, SwingConstants.CENTER);
-        inputSearchFor.setColumns(10);
-        inputSearchFor.setFont(font);
+        this.inputSearchFor.setColumns(10);
+        this.inputSearchFor.setFont(font);
         // layout
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
@@ -84,8 +85,8 @@ public class UserInterface {
         nested.add(inputStringReplaceToText, gridBagConstraints);
 
         this.inputStringReplaceTo = new JTextArea("", 1, SwingConstants.CENTER);
-        inputStringReplaceTo.setColumns(10);
-        inputStringReplaceTo.setFont(font);
+        this.inputStringReplaceTo.setColumns(10);
+        this.inputStringReplaceTo.setFont(font);
         // layout
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
@@ -135,9 +136,6 @@ public class UserInterface {
     public class FindProjectPath implements ActionListener {
 
         public void actionPerformed(ActionEvent event){
-            // need to figure out how to pass this data
-//            test1 = inputSearchFor.getText();
-//            test2 = inputStringReplaceTo.getText();
 
             // opens file window
             JFileChooser fileChooser = new JFileChooser();
@@ -157,74 +155,36 @@ public class UserInterface {
                 // set the path
                 CreateFilePath filePath = new CreateFilePath(userPathToFile);
 
+                ReadFile readFile = new ReadFile();
+
                 // if its file run as file
                 // otherwise run though files in directory
                 if(!file.isDirectory()){
 
                     String startPath = filePath.getStartPath();
+                    // make global so can write to file
 
-                    try(Scanner scanner = new Scanner(new FileReader(startPath))) {
+                    // set path for login
+                    readFile.setPath(startPath);
+                    // pass inputs
+                    String newStringFile = readFile.getNewFile(inputSearchFor, inputStringReplaceTo, isLine);
 
-                        while (scanner.hasNextLine()){
-                            String line = scanner.nextLine();
-
-                            SearchForChange searchForChange = new SearchForChange(line, inputSearchFor.getText(), inputStringReplaceTo.getText());
-                            if(searchForChange.changeHappened()){
-
-                                System.out.println("In file " + startPath);
-
-                                if(isLine.isSelected()){
-                                    afterLineRead += searchForChange.getLineChange() + "\n";
-                                    continue;
-                                }
-                                afterLineRead += searchForChange.getItemChange() + "\n";
-                                continue;
-                            }
-
-                            // returns old line w/o change
-                            afterLineRead += line + "\n";
-
-                        }
-                    } catch (Exception ex) {
-                        ex.printStackTrace();
-                    }
-
-                    WriteToSource writeToSource = new WriteToSource(afterLineRead, startPath);
+                    WriteToSource writeToSource = new WriteToSource(newStringFile, startPath);
                     writeToSource.writeFiles();
+
 
                 } else {
                     filePath.setPaths();
 
                     for (String path : filePath.getPaths()){
 
-                        try(Scanner scanner = new Scanner(new FileReader(path))) {
-                            while (scanner.hasNextLine()){
-                                String line = scanner.nextLine();
+                        // set path for login
+                        readFile.setPath(path);
+                        // pass inputs
+                        String newStringFile = readFile.getNewFile(inputSearchFor, inputStringReplaceTo, isLine);
 
-                                SearchForChange searchForChange = new SearchForChange(line, inputSearchFor.getText(), inputStringReplaceTo.getText());
-                                if(searchForChange.changeHappened()){
-
-                                    System.out.println("In file " + path);
-
-                                    if(isLine.isSelected()){
-                                        afterLineRead += searchForChange.getLineChange() + "\n";
-                                        continue;
-                                    }
-                                    afterLineRead += searchForChange.getItemChange() + "\n";
-                                    continue;
-                                }
-
-                                // returns old line w/o change
-                                afterLineRead += line + "\n";
-
-                                // if didnt happen write same line "line + "\n""
-                            }
-                            WriteToSource writeToSource = new WriteToSource(afterLineRead, path);
-                            writeToSource.writeFiles();
-                            afterLineRead = "";
-                        } catch (Exception ex) {
-                            ex.printStackTrace();
-                        }
+                        WriteToSource writeToSource = new WriteToSource(newStringFile, path);
+                        writeToSource.writeFiles();
 
                     }
 
@@ -237,7 +197,7 @@ public class UserInterface {
             // clear input
             inputSearchFor.setText("");
             inputStringReplaceTo.setText("");
-        }
+        } // end of action
 
     }
 
