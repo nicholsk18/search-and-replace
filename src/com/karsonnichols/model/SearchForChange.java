@@ -1,4 +1,4 @@
-package com.karsonnichols.model.searchForChange;
+package com.karsonnichols.model;
 
 /**
  * This file searches a line for change
@@ -21,6 +21,7 @@ public class SearchForChange {
     public String getLineChange () {
         String trimmedLine = this.line.trim();
 
+        // log changed info
         log();
 
         // returns changed line
@@ -29,6 +30,7 @@ public class SearchForChange {
 
     // if item change happen
     public String getItemChange () {
+        // log changed info
         log();
 
         return this.line.replace(this.searchFor, this.changeTo);

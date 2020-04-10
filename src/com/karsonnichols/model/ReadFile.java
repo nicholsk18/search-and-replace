@@ -1,6 +1,6 @@
-package com.karsonnichols.model.readFile;
+package com.karsonnichols.model;
 
-import com.karsonnichols.model.searchForChange.SearchForChange;
+import com.karsonnichols.model.SearchForChange;
 
 import javax.swing.*;
 import java.io.FileNotFoundException;
@@ -14,18 +14,25 @@ public class ReadFile {
         this.path = path;
     }
 
+    // gets line reads through it
+    // passes info to a class that determines if change is needed
     public String getNewFile(JTextArea inputSearchFor, JTextArea inputStringReplaceTo, JCheckBox isLine){
+        // line tha hold the hole file
+        // used string for faster reading back?
         String afterLineRead = "";
         try(Scanner scanner = new Scanner(new FileReader(path))) {
             while (scanner.hasNextLine()){
                 String line = scanner.nextLine();
 
+                // this searches and makes changes
                 SearchForChange searchForChange = new SearchForChange(line, inputSearchFor.getText(), inputStringReplaceTo.getText());
                 if(searchForChange.changeHappened()){
 
+                    // logs out when path when change happens
                     System.out.println("In file " + this.path);
 
                     if(isLine.isSelected()){
+                        // input change in to a line
                         afterLineRead += searchForChange.getLineChange() + "\n";
                         continue;
                     }
@@ -37,6 +44,7 @@ public class ReadFile {
                 afterLineRead += line + "\n";
             }
         } catch (FileNotFoundException e) {
+            System.out.println("Could not read file");
             e.printStackTrace();
         }
         return afterLineRead;

@@ -1,4 +1,4 @@
-package com.karsonnichols.model.createPath;
+package com.karsonnichols.model;
 
 /**
  * This class takes a path in

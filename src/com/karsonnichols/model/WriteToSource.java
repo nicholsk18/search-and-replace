@@ -1,4 +1,4 @@
-package com.karsonnichols.model.writeFile;
+package com.karsonnichols.model;
 
 import java.io.File;
 import java.io.FileReader;
@@ -25,16 +25,19 @@ public class WriteToSource {
         FileWriter writer;
 
         try {
+            // uncomment below and comment test.php to make changes
 //            writer = new FileWriter(this.writeTo);
             writer = new FileWriter("test.php");
             Scanner scanner = new Scanner(this.readFrom);
             while (scanner.hasNextLine()){
+                // write to same file from changed string file
                 writer.write(scanner.nextLine());
                 writer.write("\n");
             }
             writer.close();
 
         } catch (IOException e) {
+            System.out.println("Could not write to file");
             e.printStackTrace();
         }
     }

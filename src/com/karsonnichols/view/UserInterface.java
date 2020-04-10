@@ -8,9 +8,9 @@ package com.karsonnichols.view;
  * not when they select path
  */
 
-import com.karsonnichols.model.createPath.CreateFilePath;
-import com.karsonnichols.model.readFile.ReadFile;
-import com.karsonnichols.model.writeFile.WriteToSource;
+import com.karsonnichols.model.CreateFilePath;
+import com.karsonnichols.model.ReadFile;
+import com.karsonnichols.model.WriteToSource;
 
 import javax.swing.*;
 import javax.swing.border.CompoundBorder;
