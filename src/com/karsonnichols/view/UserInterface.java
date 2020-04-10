@@ -11,7 +11,6 @@ package com.karsonnichols.view;
 import com.karsonnichols.model.createPath.CreateFilePath;
 import com.karsonnichols.model.readFile.ReadFile;
 import com.karsonnichols.model.writeFile.WriteToSource;
-import com.karsonnichols.model.searchForChange.SearchForChange;
 
 import javax.swing.*;
 import javax.swing.border.CompoundBorder;
@@ -21,17 +20,15 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.io.FileReader;
-import java.util.Scanner;
 
 public class UserInterface {
-    JFrame mainFrame;
-    JPanel mainPanel;
+    private JFrame mainFrame;
+    private JPanel mainPanel;
 
-    JTextArea inputSearchFor;
-    JTextArea inputStringReplaceTo;
+    private JTextArea inputSearchFor;
+    private JTextArea inputStringReplaceTo;
 
-    JCheckBox isLine;
+    private JCheckBox isLine;
 
     
     public UserInterface(String name){
