@@ -8,8 +8,8 @@ package com.karsonnichols.view;
  * not when they select path
  */
 
-import com.karsonnichols.model.CreateFilePath;
 import com.karsonnichols.model.ReadFile;
+import com.karsonnichols.model.CreateFilePath;
 import com.karsonnichols.model.WriteToSource;
 
 import javax.swing.*;

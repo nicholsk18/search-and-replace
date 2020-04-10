@@ -1,7 +1,5 @@
 package com.karsonnichols.model;
 
-import com.karsonnichols.model.SearchForChange;
-
 import javax.swing.*;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
