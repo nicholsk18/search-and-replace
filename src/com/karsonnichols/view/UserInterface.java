@@ -213,12 +213,12 @@ public class UserInterface {
 
                                 // if didnt happen write same line "line + "\n""
                             }
+                            WriteToSource writeToSource = new WriteToSource(afterLineRead, path);
+                            writeToSource.writeFiles();
+                            afterLineRead = "";
                         } catch (Exception ex) {
                             ex.printStackTrace();
                         }
-
-                        WriteToSource writeToSource = new WriteToSource(afterLineRead, path);
-                        writeToSource.writeFiles();
 
                     }
 
