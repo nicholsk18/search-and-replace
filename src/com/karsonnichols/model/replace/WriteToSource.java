@@ -13,10 +13,10 @@ import java.util.Scanner;
  */
 
 public class WriteToSource {
-    private File readFrom;
-    private File writeTo;
+    private String readFrom;
+    private String writeTo;
 
-    public WriteToSource (File readFrom, File writeTo){
+    public WriteToSource (String readFrom, String writeTo){
         this.readFrom = readFrom;
         this.writeTo = writeTo;
     }
@@ -27,7 +27,7 @@ public class WriteToSource {
         try {
 //            writer = new FileWriter(this.writeTo);
             writer = new FileWriter("test.php");
-            Scanner scanner = new Scanner(new FileReader(this.readFrom));
+            Scanner scanner = new Scanner(this.readFrom);
             while (scanner.hasNextLine()){
                 writer.write(scanner.nextLine());
                 writer.write("\n");

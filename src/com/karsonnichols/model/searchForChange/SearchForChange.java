@@ -11,11 +11,16 @@ public class SearchForChange {
         this.changeTo = changeTo;
     }
 
-    public String getChange () {
+    // if line change happen
+    public String getLineChange () {
         String trimmedLine = this.trim(this.line);
-
         // returns changed line
-        return this.line.replace(trimmedLine, this.changeTo + "\n");
+        return this.line.replace(trimmedLine, this.changeTo);
+    }
+
+    // if item change happen
+    public String getItemChange () {
+        return this.line.replace(this.searchFor, this.changeTo);
     }
 
     public boolean changeHappened() {
