@@ -19,13 +19,18 @@ public class SearchForChange {
 
     // if line change happen
     public String getLineChange () {
-        String trimmedLine = this.trim(this.line);
+        String trimmedLine = this.line.trim();
+
+        log();
+
         // returns changed line
         return this.line.replace(trimmedLine, this.changeTo);
     }
 
     // if item change happen
     public String getItemChange () {
+        log();
+
         return this.line.replace(this.searchFor, this.changeTo);
     }
 
@@ -39,7 +44,10 @@ public class SearchForChange {
         return false;
     }
 
-    public String trim(String untrimmed) {
-        return untrimmed.trim();
+    // log changes in a file
+    public void log () {
+        System.out.println("In line: " + this.line.trim());
+        System.out.println("Changed from: " + this.searchFor);
+        System.out.println("Changed to: " + this.changeTo);
     }
 }

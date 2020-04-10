@@ -164,11 +164,14 @@ public class UserInterface {
                     String startPath = filePath.getStartPath();
 
                     try(Scanner scanner = new Scanner(new FileReader(startPath))) {
+
                         while (scanner.hasNextLine()){
                             String line = scanner.nextLine();
-                            // place to check if change happen
+
                             SearchForChange searchForChange = new SearchForChange(line, inputSearchFor.getText(), inputStringReplaceTo.getText());
                             if(searchForChange.changeHappened()){
+
+                                System.out.println("In file " + startPath);
 
                                 if(isLine.isSelected()){
                                     afterLineRead += searchForChange.getLineChange() + "\n";
@@ -197,9 +200,12 @@ public class UserInterface {
                         try(Scanner scanner = new Scanner(new FileReader(path))) {
                             while (scanner.hasNextLine()){
                                 String line = scanner.nextLine();
-                                // place to check if change happen
+
                                 SearchForChange searchForChange = new SearchForChange(line, inputSearchFor.getText(), inputStringReplaceTo.getText());
                                 if(searchForChange.changeHappened()){
+
+                                    System.out.println("In file " + path);
+
                                     if(isLine.isSelected()){
                                         afterLineRead += searchForChange.getLineChange() + "\n";
                                         continue;

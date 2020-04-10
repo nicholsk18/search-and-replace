@@ -25,8 +25,8 @@ public class WriteToSource {
         FileWriter writer;
 
         try {
-//            writer = new FileWriter(this.writeTo);
-            writer = new FileWriter("test.php");
+            writer = new FileWriter(this.writeTo);
+//            writer = new FileWriter("test.php");
             Scanner scanner = new Scanner(this.readFrom);
             while (scanner.hasNextLine()){
                 writer.write(scanner.nextLine());

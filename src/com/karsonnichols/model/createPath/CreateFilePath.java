@@ -40,9 +40,6 @@ public class CreateFilePath {
 
     public ArrayList<String> getPaths(){
         // return new paths
-        for(String path : paths){
-            System.out.println(path);
-        }
         return this.paths;
     }
 
@@ -55,7 +52,7 @@ public class CreateFilePath {
         try{
             for(File file : files){
                 if(file.isDirectory()){
-                    System.out.println("Directory: " + file.getName());
+//                    System.out.println("Directory: " + file.getName());
                     // set folder for this path
                     // allows to get multiple file from same directory
                     this.fileFolder = file.getName();
