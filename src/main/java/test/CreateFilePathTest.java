@@ -4,10 +4,11 @@ package test;
  * Mock test
  */
 
-import org.junit.jupiter.api.Test;
+import org.testng.annotations.Test;
 
 import java.io.File;
 import java.io.IOException;
+
 
 // test learning
 // https://junit.org/junit4/javadoc/4.12/org/junit/rules/TemporaryFolder.html
