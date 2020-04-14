@@ -48,7 +48,7 @@ public class CreateFilePath {
 
     // finds path to a file from main directory if it has subdirectories
     // uses recursion
-    public void findPath(File[] files){
+    private void findPath(File[] files){
 
         // Checks to see if a file is a directory
         // if yes calls findPath again

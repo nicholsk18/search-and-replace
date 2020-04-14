@@ -30,6 +30,8 @@ public class UserInterface {
     private JTextArea inputStringReplaceTo;
     private JTextArea inputStringExclude;
 
+    private JLabel inputFileText;
+
     private JCheckBox isLine;
 
     
@@ -118,12 +120,12 @@ public class UserInterface {
         nested.add(this.isLine, gridBagConstraints);
 
 
-        JLabel inputFileText = new JLabel("Insert location of project", SwingConstants.CENTER);
-        inputFileText.setBorder(compound);
+        this.inputFileText = new JLabel("Insert location of project", SwingConstants.CENTER);
+        this.inputFileText.setBorder(compound);
         // layout
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
-        nested.add(inputFileText, gridBagConstraints);
+        nested.add(this.inputFileText, gridBagConstraints);
 
         JButton findFile = new JButton("Find File");
         // layout
@@ -184,6 +186,8 @@ public class UserInterface {
                     WriteToSource writeToSource = new WriteToSource(newStringFile, startPath);
                     writeToSource.writeFiles();
 
+                    // show user what path was changed
+                    inputFileText.setText(startPath);
 
                 } else {
                     filePath.setPaths();
@@ -204,6 +208,8 @@ public class UserInterface {
                         WriteToSource writeToSource = new WriteToSource(newStringFile, path);
                         writeToSource.writeFiles();
 
+                        // show user what path was changed ***Needs work***
+                        // inputFileText.setText(filePath.getPaths() + "\n");
                     }
 
                 }
