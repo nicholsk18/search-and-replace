@@ -8,6 +8,7 @@ package com.karsonnichols.view;
  * not when they select path
  */
 
+import com.karsonnichols.model.ExcludePath;
 import com.karsonnichols.model.ReadFile;
 import com.karsonnichols.model.CreateFilePath;
 import com.karsonnichols.model.WriteToSource;
@@ -189,16 +190,9 @@ public class UserInterface {
 
                     for (String path : filePath.getPaths()){
 
-                        // Gets the name of the file
-                        int endOfPathIndex = path.lastIndexOf("/") + 1;
-                        String fileName = "";
-                        for(int i = endOfPathIndex; i < path.length(); i++){
-                            fileName += path.charAt(i);
-                        }
-
-                        // Checks to see if needs to be excluded
-                        if(fileName.equals(inputStringExclude.getText())){
-                            System.out.println("Skipped " + fileName);
+                        // returns true if path is excluded
+                        ExcludePath excludePath = new ExcludePath(path, inputStringExclude.getText());
+                        if(excludePath.isExcluded()){
                             continue;
                         }
 
