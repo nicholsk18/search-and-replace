@@ -1,4 +1,4 @@
-package com.karsonnichols.main;
+package com.karsonnichols;
 
 import com.karsonnichols.view.UserInterface;
 

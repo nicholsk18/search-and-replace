@@ -18,7 +18,8 @@ public class ReadFile {
         // line tha hold the hole file
         // used string for faster reading back?
         String afterLineRead = "";
-        try(Scanner scanner = new Scanner(new FileReader(path))) {
+        try {
+            Scanner scanner = new Scanner(new FileReader(path));
             while (scanner.hasNextLine()){
                 String line = scanner.nextLine();
 

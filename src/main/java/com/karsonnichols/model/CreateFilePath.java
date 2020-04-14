@@ -23,7 +23,7 @@ public class CreateFilePath {
     public CreateFilePath(String startPath){
         this.startPath = startPath;
         this.fileFolder = "";
-        this.paths = new ArrayList<>();
+        this.paths = new ArrayList<String>();
         this.file = new File(this.startPath);
     }
 
