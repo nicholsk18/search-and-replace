@@ -16,12 +16,15 @@ public class CreateFilePath {
     private String fileFolder;
     private ArrayList<String> paths;
 
+    private String excludeFolder;
+
     // need to be File to search dir
     // other one sets path as a String
     private File file;
 
-    public CreateFilePath(String startPath){
+    public CreateFilePath(String startPath, String excludeFolder){
         this.startPath = startPath;
+        this.excludeFolder = excludeFolder;
         this.fileFolder = "";
         this.paths = new ArrayList<String>();
         this.file = new File(this.startPath);
@@ -52,7 +55,12 @@ public class CreateFilePath {
         try{
             for(File file : files){
                 if(file.isDirectory()){
-//                    System.out.println("Directory: " + file.getName());
+                    // exclude
+                    if(file.getName().equals(this.excludeFolder)){
+                        System.out.println("Folder excluded " + excludeFolder);
+                        continue;
+                    }
+
                     // set folder for this path
                     // allows to get multiple file from same directory
                     this.fileFolder = file.getName();

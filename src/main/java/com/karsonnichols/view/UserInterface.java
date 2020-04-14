@@ -90,7 +90,7 @@ public class UserInterface {
         gridBagConstraints.gridy = 1;
         nested.add(this.inputStringReplaceTo, gridBagConstraints);
 
-        JLabel inputStringExcludeText = new JLabel("File to be excluded (Leave blank for none)", SwingConstants.CENTER);
+        JLabel inputStringExcludeText = new JLabel("Excluded File/Folder (Include extension for file. Leave blank for none)", SwingConstants.CENTER);
         // layout
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -164,7 +164,7 @@ public class UserInterface {
                 String userPathToFile = file.getAbsolutePath();
 
                 // set the path
-                CreateFilePath filePath = new CreateFilePath(userPathToFile);
+                CreateFilePath filePath = new CreateFilePath(userPathToFile, inputStringExclude.getText());
 
                 ReadFile readFile = new ReadFile();
 
@@ -195,9 +195,6 @@ public class UserInterface {
                         for(int i = endOfPathIndex; i < path.length(); i++){
                             fileName += path.charAt(i);
                         }
-
-                        System.out.println(fileName);
-                        System.out.println(inputStringExclude.getText());
 
                         // Checks to see if needs to be excluded
                         if(fileName.equals(inputStringExclude.getText())){
