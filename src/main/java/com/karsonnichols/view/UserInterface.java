@@ -27,6 +27,7 @@ public class UserInterface {
 
     private JTextArea inputSearchFor;
     private JTextArea inputStringReplaceTo;
+    private JTextArea inputStringExclude;
 
     private JCheckBox isLine;
 
@@ -89,17 +90,30 @@ public class UserInterface {
         gridBagConstraints.gridy = 1;
         nested.add(this.inputStringReplaceTo, gridBagConstraints);
 
+        JLabel inputStringExcludeText = new JLabel("File to be excluded (Leave blank for none)", SwingConstants.CENTER);
+        // layout
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        nested.add(inputStringExcludeText, gridBagConstraints);
+
+        this.inputStringExclude = new JTextArea("", 1, SwingConstants.CENTER);
+        this.inputStringExclude.setColumns(10);
+        this.inputStringExclude.setFont(font);
+        // layout
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        nested.add(this.inputStringExclude, gridBagConstraints);
 
         JLabel isFileText = new JLabel("Change the hole line? (Check for yes)", SwingConstants.CENTER);
         // layout
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 3;
         nested.add(isFileText, gridBagConstraints);
 
         this.isLine = new JCheckBox();
         // layout
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 3;
         nested.add(this.isLine, gridBagConstraints);
 
 
@@ -107,13 +121,13 @@ public class UserInterface {
         inputFileText.setBorder(compound);
         // layout
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 4;
         nested.add(inputFileText, gridBagConstraints);
 
         JButton findFile = new JButton("Find File");
         // layout
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 5;
         nested.add(findFile, gridBagConstraints);
 
 
@@ -175,6 +189,22 @@ public class UserInterface {
 
                     for (String path : filePath.getPaths()){
 
+                        // Gets the name of the file
+                        int endOfPathIndex = path.lastIndexOf("/") + 1;
+                        String fileName = "";
+                        for(int i = endOfPathIndex; i < path.length(); i++){
+                            fileName += path.charAt(i);
+                        }
+
+                        System.out.println(fileName);
+                        System.out.println(inputStringExclude.getText());
+
+                        // Checks to see if needs to be excluded
+                        if(fileName.equals(inputStringExclude.getText())){
+                            System.out.println("Skipped " + fileName);
+                            continue;
+                        }
+
                         // set path for login
                         readFile.setPath(path);
                         // pass inputs
@@ -194,6 +224,7 @@ public class UserInterface {
             // clear input
             inputSearchFor.setText("");
             inputStringReplaceTo.setText("");
+            inputStringExclude.setText("");
         } // end of action
 
     }
