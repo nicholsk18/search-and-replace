@@ -16,13 +16,13 @@ public class CreateFilePath {
     private String fileFolder;
     private ArrayList<String> paths;
 
-    private String excludeFolder;
+    private ArrayList<String> excludeFolder;
 
     // need to be File to search dir
     // other one sets path as a String
     private File file;
 
-    public CreateFilePath(String startPath, String excludeFolder){
+    public CreateFilePath(String startPath, ArrayList<String> excludeFolder){
         this.startPath = startPath;
         this.excludeFolder = excludeFolder;
         this.fileFolder = "";
@@ -56,7 +56,7 @@ public class CreateFilePath {
             for(File file : files){
                 if(file.isDirectory()){
                     // exclude
-                    if(file.getName().equals(this.excludeFolder)){
+                    if(this.excludeFolder.contains(file.getName())){
                         System.out.println("Folder excluded " + excludeFolder);
                         continue;
                     }

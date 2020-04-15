@@ -1,15 +1,17 @@
 package com.karsonnichols.model;
 
+import java.util.ArrayList;
+
 /**
  * This file returns true if path needs to be excluded
  */
 
 public class ExcludePath {
     private String path;
-    private String excludePath;
+    private ArrayList<String> excludePath;
     private String fileName;
 
-    public ExcludePath (String path, String excludePath) {
+    public ExcludePath (String path, ArrayList<String> excludePath) {
         this.path = path;
         this.excludePath = excludePath;
         this.fileName = "";
@@ -24,7 +26,7 @@ public class ExcludePath {
         }
 
         // Checks to see if needs to be excluded
-        if(fileName.equals(excludePath)){
+        if(this.excludePath.contains(this.fileName)){
             System.out.println("Skipped " + fileName);
             return true;
         }

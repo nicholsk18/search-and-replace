@@ -9,23 +9,24 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.util.ArrayList;
 
 public class FindProjectPath implements ActionListener {
     private JFrame mainFrame;
 
     private JTextArea inputSearchFor;
     private JTextArea inputStringReplaceTo;
-    private JTextArea inputStringExclude;
+    private ArrayList<String> excludedPathsList;
 
     private JLabel inputFileText;
 
     private JCheckBox isLine;
 
-    public FindProjectPath (JFrame mainFrame, JTextArea inputSearchFor, JTextArea inputStringReplaceTo, JTextArea inputStringExclude, JLabel inputFileText, JCheckBox isLine) {
+    public FindProjectPath (JFrame mainFrame, JTextArea inputSearchFor, JTextArea inputStringReplaceTo, ArrayList<String> excludedPathsList, JLabel inputFileText, JCheckBox isLine) {
         this.mainFrame = mainFrame;
         this.inputSearchFor = inputSearchFor;
         this.inputStringReplaceTo = inputStringReplaceTo;
-        this.inputStringExclude = inputStringExclude;
+        this.excludedPathsList = excludedPathsList;
         this.inputFileText = inputFileText;
         this.isLine = isLine;
     }
@@ -48,7 +49,7 @@ public class FindProjectPath implements ActionListener {
             String userPathToFile = file.getAbsolutePath();
 
             // set the path
-            CreateFilePath filePath = new CreateFilePath(userPathToFile, inputStringExclude.getText());
+            CreateFilePath filePath = new CreateFilePath(userPathToFile, excludedPathsList);
 
             ReadFile readFile = new ReadFile();
 
@@ -76,7 +77,7 @@ public class FindProjectPath implements ActionListener {
                 for (String path : filePath.getPaths()) {
 
                     // returns true if path is excluded
-                    ExcludePath excludePath = new ExcludePath(path, inputStringExclude.getText());
+                    ExcludePath excludePath = new ExcludePath(path, excludedPathsList);
                     if (excludePath.isExcluded()) {
                         continue;
                     }
@@ -96,7 +97,7 @@ public class FindProjectPath implements ActionListener {
             }
             this.inputSearchFor.setText("");
             this.inputStringReplaceTo.setText("");
-            this.inputStringExclude.setText("");
+            this.excludedPathsList.clear();
 
         } else {
             System.out.println("Could not open file");

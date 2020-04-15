@@ -8,20 +8,14 @@ package com.karsonnichols.view;
  * not when they select path
  */
 
+import com.karsonnichols.controller.userInterfaceActions.ExcludeAddedPath;
 import com.karsonnichols.controller.userInterfaceActions.FindProjectPath;
-import com.karsonnichols.model.ExcludePath;
-import com.karsonnichols.model.ReadFile;
-import com.karsonnichols.model.CreateFilePath;
-import com.karsonnichols.model.WriteToSource;
 
 import javax.swing.*;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.File;
 
 public class UserInterface {
     private JFrame mainFrame;
@@ -108,6 +102,13 @@ public class UserInterface {
         gridBagConstraints.gridy = 2;
         nested.add(this.inputStringExclude, gridBagConstraints);
 
+        // need to add spacing
+        JButton addExcludedPath = new JButton("Add path");
+        // layout
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 2;
+        nested.add(addExcludedPath, gridBagConstraints);
+
         JLabel isFileText = new JLabel("Change the hole line? (Check for yes)", SwingConstants.CENTER);
         // layout
         gridBagConstraints.gridx = 0;
@@ -134,9 +135,12 @@ public class UserInterface {
         gridBagConstraints.gridy = 5;
         nested.add(findFile, gridBagConstraints);
 
+        // adds paths that need to be excluded
+        ExcludeAddedPath excludeAddedPath = new ExcludeAddedPath(this.inputStringExclude);
+        addExcludedPath.addActionListener(excludeAddedPath);
 
         // file button that starts the search
-        findFile.addActionListener(new FindProjectPath(this.mainFrame, this.inputSearchFor, this.inputStringReplaceTo, this.inputStringExclude, this.inputFileText, this.isLine));
+        findFile.addActionListener(new FindProjectPath(this.mainFrame, this.inputSearchFor, this.inputStringReplaceTo, excludeAddedPath.getExcludedPaths(), this.inputFileText, this.isLine));
 
         this.mainPanel.add(BorderLayout.CENTER, nested);
         this.mainFrame.getContentPane().add(BorderLayout.CENTER, mainPanel);
