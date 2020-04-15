@@ -1,6 +1,5 @@
 .idea
 out/
-replace-line.csv
-replace-item.csv
 copy.php
 test.php
+target/
