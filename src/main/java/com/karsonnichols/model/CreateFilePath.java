@@ -57,7 +57,7 @@ public class CreateFilePath {
                 if(file.isDirectory()){
                     // exclude
                     if(this.excludeFolder.contains(file.getName())){
-                        System.out.println("Folder excluded " + excludeFolder);
+                        System.out.println("Folder excluded " + this.excludeFolder);
                         continue;
                     }
 
@@ -76,6 +76,9 @@ public class CreateFilePath {
                     if (!this.fileFolder.isEmpty()){
                         // is already has a folder go back inside
                         paths.add(this.startPath + "/" + this.fileFolder + "/" + file.getName());
+                    } else if(this.excludeFolder.contains(file.getName())){
+                        System.out.println("File excluded " + this.excludeFolder);
+                        continue;
                     } else {
                         paths.add(this.startPath + "/" + file.getName());
                     }

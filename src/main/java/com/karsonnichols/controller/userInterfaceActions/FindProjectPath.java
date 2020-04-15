@@ -77,10 +77,10 @@ public class FindProjectPath implements ActionListener {
                 for (String path : filePath.getPaths()) {
 
                     // returns true if path is excluded
-                    ExcludePath excludePath = new ExcludePath(path, excludedPathsList);
-                    if (excludePath.isExcluded()) {
-                        continue;
-                    }
+//                    ExcludePath excludePath = new ExcludePath(path, excludedPathsList);
+//                    if (excludePath.isExcluded()) {
+//                        continue;
+//                    }
 
                     // set path for login
                     readFile.setPath(path);
