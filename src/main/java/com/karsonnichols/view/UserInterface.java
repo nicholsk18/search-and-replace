@@ -26,6 +26,7 @@ public class UserInterface {
     private JTextArea inputStringExclude;
 
     private JLabel inputFileText;
+    private JTextArea skippedFiles;
 
     private JCheckBox isLine;
 
@@ -109,16 +110,24 @@ public class UserInterface {
         gridBagConstraints.gridy = 2;
         nested.add(addExcludedPath, gridBagConstraints);
 
-        JLabel isFileText = new JLabel("Change the hole line? (Check for yes)", SwingConstants.CENTER);
+        // skipped files
+        skippedFiles = new JTextArea(1, SwingConstants.CENTER);
+        skippedFiles.setEditable(false);
         // layout
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
+        nested.add(skippedFiles, gridBagConstraints);
+
+        JLabel isFileText = new JLabel("Change the hole line? (Check for yes)", SwingConstants.CENTER);
+        // layout
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
         nested.add(isFileText, gridBagConstraints);
 
         this.isLine = new JCheckBox();
         // layout
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 4;
         nested.add(this.isLine, gridBagConstraints);
 
 
@@ -126,17 +135,17 @@ public class UserInterface {
         this.inputFileText.setBorder(compound);
         // layout
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 5;
         nested.add(this.inputFileText, gridBagConstraints);
 
         JButton findFile = new JButton("Find File");
         // layout
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridy = 6;
         nested.add(findFile, gridBagConstraints);
 
         // adds paths that need to be excluded
-        ExcludeAddedPath excludeAddedPath = new ExcludeAddedPath(this.inputStringExclude);
+        ExcludeAddedPath excludeAddedPath = new ExcludeAddedPath(this.inputStringExclude, skippedFiles);
         addExcludedPath.addActionListener(excludeAddedPath);
 
         // file button that starts the search

@@ -24,8 +24,8 @@ public class WriteToSource {
 
         try {
             // uncomment below and comment test.php to make changes
-            writer = new FileWriter(this.writeTo);
-//            writer = new FileWriter("test.php");
+//            writer = new FileWriter(this.writeTo);
+            writer = new FileWriter("test.php");
             Scanner scanner = new Scanner(this.readFrom);
             while (scanner.hasNextLine()){
                 // write to same file from changed string file
