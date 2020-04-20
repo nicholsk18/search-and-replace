@@ -39,7 +39,7 @@ public class UserInterface {
     public void build() {
 
         // numbers add padding
-        this.mainPanel.setBorder(BorderFactory.createEmptyBorder(50, 50, 50, 50));
+        mainPanel.setBorder(BorderFactory.createEmptyBorder(50, 50, 50, 50));
         // text
         JPanel nested = new JPanel(new GridBagLayout());
         GridBagConstraints gridBagConstraints = new GridBagConstraints();
@@ -60,48 +60,48 @@ public class UserInterface {
         Font font = new Font("Verdana", Font.PLAIN, 20);
 
         // create buttons and labels
-        JLabel inputSearchForText = new JLabel("What are you searching for", SwingConstants.CENTER);
+        JLabel inputSearchForText = new JLabel("What are you searching for: ", SwingConstants.CENTER);
         // ***grid bag needs to be above the file adding to nested to work correctly*** //
         // layout
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         nested.add(inputSearchForText, gridBagConstraints);
 
-        this.inputSearchFor = new JTextArea("", 1, SwingConstants.CENTER);
-        this.inputSearchFor.setColumns(10);
-        this.inputSearchFor.setFont(font);
+        inputSearchFor = new JTextArea("", 1, SwingConstants.CENTER);
+        inputSearchFor.setColumns(10);
+        inputSearchFor.setFont(font);
         // layout
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
-        nested.add(this.inputSearchFor, gridBagConstraints);
+        nested.add(inputSearchFor, gridBagConstraints);
 
-        JLabel inputStringReplaceToText = new JLabel("What do you want to replace with", SwingConstants.CENTER);
+        JLabel inputStringReplaceToText = new JLabel("What do you want to replace with: ", SwingConstants.CENTER);
         // layout
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         nested.add(inputStringReplaceToText, gridBagConstraints);
 
-        this.inputStringReplaceTo = new JTextArea("", 1, SwingConstants.CENTER);
-        this.inputStringReplaceTo.setColumns(10);
-        this.inputStringReplaceTo.setFont(font);
+        inputStringReplaceTo = new JTextArea("", 1, SwingConstants.CENTER);
+        inputStringReplaceTo.setColumns(10);
+        inputStringReplaceTo.setFont(font);
         // layout
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
-        nested.add(this.inputStringReplaceTo, gridBagConstraints);
+        nested.add(inputStringReplaceTo, gridBagConstraints);
 
-        JLabel inputStringExcludeText = new JLabel("Excluded File/Folder (Include extension for file. Leave blank for none)", SwingConstants.CENTER);
+        JLabel inputStringExcludeText = new JLabel("Excluded File/Folder (Include extension for file. Leave blank for none.)", SwingConstants.CENTER);
         // layout
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
         nested.add(inputStringExcludeText, gridBagConstraints);
 
-        this.inputStringExclude = new JTextArea("", 1, SwingConstants.CENTER);
-        this.inputStringExclude.setColumns(10);
-        this.inputStringExclude.setFont(font);
+        inputStringExclude = new JTextArea("", 1, SwingConstants.CENTER);
+        inputStringExclude.setColumns(10);
+        inputStringExclude.setFont(font);
         // layout
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
-        nested.add(this.inputStringExclude, gridBagConstraints);
+        nested.add(inputStringExclude, gridBagConstraints);
 
         // need to add spacing
         JButton addExcludedPath = new JButton("Add path");
@@ -124,19 +124,19 @@ public class UserInterface {
         gridBagConstraints.gridy = 4;
         nested.add(isFileText, gridBagConstraints);
 
-        this.isLine = new JCheckBox();
+        isLine = new JCheckBox();
         // layout
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 4;
-        nested.add(this.isLine, gridBagConstraints);
+        nested.add(isLine, gridBagConstraints);
 
 
-        this.inputFileText = new JLabel("Insert location of project", SwingConstants.CENTER);
-        this.inputFileText.setBorder(compound);
+        inputFileText = new JLabel("Insert location of project", SwingConstants.CENTER);
+        inputFileText.setBorder(compound);
         // layout
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
-        nested.add(this.inputFileText, gridBagConstraints);
+        nested.add(inputFileText, gridBagConstraints);
 
         JButton findFile = new JButton("Find File");
         // layout
@@ -145,18 +145,18 @@ public class UserInterface {
         nested.add(findFile, gridBagConstraints);
 
         // adds paths that need to be excluded
-        ExcludeAddedPath excludeAddedPath = new ExcludeAddedPath(this.inputStringExclude, skippedFiles);
+        ExcludeAddedPath excludeAddedPath = new ExcludeAddedPath(inputStringExclude, skippedFiles);
         addExcludedPath.addActionListener(excludeAddedPath);
 
         // file button that starts the search
-        findFile.addActionListener(new FindProjectPath(this.mainFrame, this.inputSearchFor, this.inputStringReplaceTo, excludeAddedPath.getExcludedPaths(), this.inputFileText, this.isLine));
+        findFile.addActionListener(new FindProjectPath(mainFrame, inputSearchFor, inputStringReplaceTo, excludeAddedPath.getExcludedPaths(), inputFileText, isLine));
 
-        this.mainPanel.add(BorderLayout.CENTER, nested);
-        this.mainFrame.getContentPane().add(BorderLayout.CENTER, mainPanel);
+        mainPanel.add(BorderLayout.CENTER, nested);
+        mainFrame.getContentPane().add(BorderLayout.CENTER, mainPanel);
 
-        this.mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.mainFrame.setSize(1280, 780);
-        this.mainFrame.setVisible(true);
+        mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        mainFrame.setSize(1280, 780);
+        mainFrame.setVisible(true);
 
     }
 
